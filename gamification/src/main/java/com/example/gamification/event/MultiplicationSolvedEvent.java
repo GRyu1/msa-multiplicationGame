@@ -1,14 +1,12 @@
-package com.example.msaprac02.multiplication.event;
+package com.example.gamification.event;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 
+@NoArgsConstructor(force = true)
 @RequiredArgsConstructor
-@Data
+@Getter
 @ToString
 @EqualsAndHashCode
 public class MultiplicationSolvedEvent implements Serializable {

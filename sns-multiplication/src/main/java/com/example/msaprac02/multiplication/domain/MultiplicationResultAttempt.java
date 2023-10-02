@@ -15,8 +15,8 @@ public class MultiplicationResultAttempt {
     @Id
     @GeneratedValue
     private Long id;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    //앞
+    @ManyToOne(cascade = CascadeType.PERSIST) //뒤
     @JoinColumn(name = "PLAYER_ID")
     private final Player player;
 

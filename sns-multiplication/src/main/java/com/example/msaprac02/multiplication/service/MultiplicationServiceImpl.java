@@ -23,10 +23,14 @@ public class MultiplicationServiceImpl implements MultiplicationService{
     private EventDispatcher eventDispatcher;
 
     @Autowired
-    public MultiplicationServiceImpl(RandomGeneratorService randomGeneratorService, MultiplicationResultAttemptRepository multiplicationResultAttemptRepository, PlayerRepository playerRepository) {
+    public MultiplicationServiceImpl(final RandomGeneratorService randomGeneratorService,
+                                     final MultiplicationResultAttemptRepository multiplicationResultAttemptRepository,
+                                     final PlayerRepository playerRepository,
+                                     final EventDispatcher eventDispatcher) {
         this.randomGeneratorService = randomGeneratorService;
         this.multiplicationResultAttemptRepository = multiplicationResultAttemptRepository;
         this.playerRepository = playerRepository;
+        this.eventDispatcher = eventDispatcher;
     }
 
 
@@ -67,5 +71,10 @@ public class MultiplicationServiceImpl implements MultiplicationService{
     @Override
     public List<MultiplicationResultAttempt> getStatsForPlayer(String alias) {
         return multiplicationResultAttemptRepository.findTop5ByPlayerAliasOrderByIdDesc(alias);
+    }
+
+    @Override
+    public MultiplicationResultAttempt getResultById(final Long resultId) {
+        return multiplicationResultAttemptRepository.findOne(resultId);
     }
 }

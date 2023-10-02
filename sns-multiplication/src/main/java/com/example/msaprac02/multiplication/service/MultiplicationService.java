@@ -9,4 +9,6 @@ public interface MultiplicationService {
     Multiplication createRandomMultiplication();
     boolean checkAttempt(final MultiplicationResultAttempt multiplicationResultAttempt);
     List<MultiplicationResultAttempt> getStatsForPlayer(String alias);
+
+    MultiplicationResultAttempt getResultById(final Long resultId);
 }

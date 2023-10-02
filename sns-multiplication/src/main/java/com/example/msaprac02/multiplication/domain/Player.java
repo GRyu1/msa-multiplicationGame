@@ -20,7 +20,6 @@ public class Player {
     @GeneratedValue
     @Column(name = "PLAYER_ID")
     private Long id;
-
     private final String alias;
 
     protected Player(){
