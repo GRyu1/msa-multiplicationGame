@@ -8,5 +8,6 @@ import java.util.List;
 public interface MultiplicationResultAttemptRepository extends CrudRepository<MultiplicationResultAttempt, Long> {
     List<MultiplicationResultAttempt> findTop5ByPlayerAliasOrderByIdDesc(String userAlias);
 
-    MultiplicationResultAttempt findOne(Long resultId);
+
+    MultiplicationResultAttempt findMultiplicationResultAttemptById(Long resultId);
 }

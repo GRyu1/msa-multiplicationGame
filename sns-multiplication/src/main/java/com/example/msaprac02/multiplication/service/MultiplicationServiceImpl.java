@@ -7,6 +7,7 @@ import com.example.msaprac02.multiplication.event.EventDispatcher;
 import com.example.msaprac02.multiplication.event.MultiplicationSolvedEvent;
 import com.example.msaprac02.multiplication.repository.MultiplicationResultAttemptRepository;
 import com.example.msaprac02.multiplication.repository.PlayerRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import org.springframework.util.Assert;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class MultiplicationServiceImpl implements MultiplicationService{
     private RandomGeneratorService randomGeneratorService;
@@ -43,6 +45,7 @@ public class MultiplicationServiceImpl implements MultiplicationService{
     @Override
     @Transactional
     public boolean checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt) {
+        log.info("multiplicationResultAttempt={}",multiplicationResultAttempt);
         Optional<Player> player = playerRepository.findByAlias(multiplicationResultAttempt.getPlayer().getAlias());
 
         boolean correct =
@@ -75,6 +78,6 @@ public class MultiplicationServiceImpl implements MultiplicationService{
 
     @Override
     public MultiplicationResultAttempt getResultById(final Long resultId) {
-        return multiplicationResultAttemptRepository.findOne(resultId);
+        return multiplicationResultAttemptRepository.findMultiplicationResultAttemptById(resultId);
     }
 }
