@@ -9,6 +9,7 @@ import com.example.gamification.domain.ScoreCard;
 import com.example.gamification.repository.BadgeCardRepository;
 import com.example.gamification.repository.ScoreCardRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.AopInvocationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -88,7 +89,12 @@ public class GameServiceImpl implements GameService{
 
     @Override
     public GameStats retrieveStatsForUser(Long playerId) {
-        int score = scoreCardRepository.getTotalScoreForUser(playerId);
+        int score = 0;
+        try {
+            score = scoreCardRepository.getTotalScoreForUser(playerId);
+        } catch (AopInvocationException aopInvocationException){
+            log.info("최초 검색자 = {}", playerId);
+        }
         List<BadgeCard> badgeCards = badgeCardRepository.findByPlayerIdOrderByBadgeTimeStampDesc(playerId);
         return new GameStats(playerId, score,badgeCards.stream().map(BadgeCard::getBadge).collect(Collectors.toList()));
     }

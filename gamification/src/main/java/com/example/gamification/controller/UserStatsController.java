@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/stats")
+@RequestMapping("/api/stats")
 @RequiredArgsConstructor
 public class UserStatsController {
     private final GameService gameService;

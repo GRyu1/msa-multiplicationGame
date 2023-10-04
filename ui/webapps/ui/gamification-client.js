@@ -2,7 +2,7 @@ var SERVER_URL = "http://localhost:8000/api";
 
 function updateLeaderBoard() {
   $.ajax({
-    url: SERVER_URL+"/leaders"
+    url: SERVER_URL + "/leaders"
   }).then(function (data) {
     $('#leaderboard-body').empty();
     data.forEach(function (row) {
@@ -14,7 +14,7 @@ function updateLeaderBoard() {
 
 function updateStats(playerId) {
   $.ajax({
-    url: SERVER_URL+"/stats?playerId=" + playerId,
+    url: SERVER_URL + "/stats?playerId=" + playerId,
     success: function (data) {
       $('#stats-div').show();
       $('#stats-user-id').empty().append(playerId);
