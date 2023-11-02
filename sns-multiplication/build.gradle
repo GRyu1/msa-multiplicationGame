@@ -27,18 +27,23 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools:3.0.4'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.0'
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
-    // https://mvnrepository.com/artifact/org.assertj/assertj-core
     testImplementation 'org.assertj:assertj-core:3.24.2'
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.1.1'
-    // https://mvnrepository.com/artifact/com.h2database/h2
     implementation 'com.h2database:h2:2.1.210'
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-amqp
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '3.1.2'
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.3'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    // https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-all
+    implementation 'io.github.resilience4j:resilience4j-all:2.1.0'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop:3.1.4'
+    // https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-reactor
+    implementation 'io.github.resilience4j:resilience4j-reactor:2.1.0'
+    // https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-spring-boot3
+    implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.1.0'
+
+
 }
 
 tasks.named('test') {

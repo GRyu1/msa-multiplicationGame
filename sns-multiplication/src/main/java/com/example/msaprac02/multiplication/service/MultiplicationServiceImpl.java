@@ -7,6 +7,7 @@ import com.example.msaprac02.multiplication.event.EventDispatcher;
 import com.example.msaprac02.multiplication.event.MultiplicationSolvedEvent;
 import com.example.msaprac02.multiplication.repository.MultiplicationResultAttemptRepository;
 import com.example.msaprac02.multiplication.repository.PlayerRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,7 @@ public class MultiplicationServiceImpl implements MultiplicationService{
 
     @Override
     @Transactional
+    @CircuitBreaker(name = "checkAttempt" , fallbackMethod = "checkAttemptFallback")
     public boolean checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt) {
         log.info("multiplicationResultAttempt={}",multiplicationResultAttempt);
         Optional<Player> player = playerRepository.findByAlias(multiplicationResultAttempt.getPlayer().getAlias());
@@ -69,6 +71,10 @@ public class MultiplicationServiceImpl implements MultiplicationService{
         ));
 
         return correct;
+    }
+
+    public String checkAttemptFallback(Throwable t) {
+        return "checkAttemptFallback response: " + t.getMessage();
     }
 
     @Override
